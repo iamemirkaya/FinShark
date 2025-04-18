@@ -8,6 +8,10 @@ import IncomeStatement from "../Components/IncomeStatement/IncomeStatement";
 import DesignGuide from "../Pages/DesignGuide/DesignGuide";
 import BalanceSheet from "../Components/BalanceSheet/BalanceSheet";
 import CashflowStatement from "../Components/CashflowStatement/CashflowStatement";
+import LoginPage from "../Pages/LoginPage/LoginPage";
+import RegisterPage from "../Pages/RegisterPage/RegisterPage";
+import ProtectedRoute from "./ProtectedRoute";
+
 
 export const router = createBrowserRouter([{
 
@@ -17,7 +21,17 @@ export const router = createBrowserRouter([{
     children: [
 
         { path: "", element: <HomePage /> },
-        { path: "Search", element: <SearchPage /> },
+        { path: "login", element: <LoginPage /> },
+        { path: "register", element: <RegisterPage /> },
+        { path: "design-guide", element: <DesignGuide /> },
+        {
+            path: "search",
+            element: (
+              <ProtectedRoute>
+                <SearchPage />
+              </ProtectedRoute>
+            ),
+          },
         {
             path: "Company/:ticker",
             element: <CompanyPage />,
@@ -29,7 +43,7 @@ export const router = createBrowserRouter([{
             ]
 
         },
-        { path: "design-guide", element: <DesignGuide /> },
+        
     ]
 
 
